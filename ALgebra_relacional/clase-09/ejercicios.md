@@ -24,6 +24,10 @@ CREATE INDEX "idx_reserve__bid" ON "reserve" ("bid");
 
 CREATE INDEX "idx_reserve__sid" ON "reserve" ("sid");
 
+ALTER TABLE "reserve" ADD CONSTRAINT "fk_reserve__bid" FOREIGN KEY ("bid") REFERENCES "boat" ("bid") ON DELETE CASCADE;
+
+ALTER TABLE "reserve" ADD CONSTRAINT "fk_reserve__sid" FOREIGN KEY ("sid") REFERENCES "sailor" ("sid") ON DELETE CASCADE
+
 1) Consulta en sql:
 
 select color from boat b
@@ -31,6 +35,3 @@ inner join reserve r on b.bid = r.bid
 inner join sailor s on r.sid = s.sid
 where s.sname = 'Albert';
 
-ALTER TABLE "reserve" ADD CONSTRAINT "fk_reserve__bid" FOREIGN KEY ("bid") REFERENCES "boat" ("bid") ON DELETE CASCADE;
-
-ALTER TABLE "reserve" ADD CONSTRAINT "fk_reserve__sid" FOREIGN KEY ("sid") REFERENCES "sailor" ("sid") ON DELETE CASCADE
