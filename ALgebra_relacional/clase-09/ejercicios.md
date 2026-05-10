@@ -1,5 +1,5 @@
 ## **Script usado para crear las tablas:**
-
+```
 CREATE TABLE "boat" (
   "bid" SERIAL PRIMARY KEY,
   "bname" TEXT NOT NULL,
@@ -27,7 +27,8 @@ CREATE INDEX "idx_reserve__sid" ON "reserve" ("sid");
 ALTER TABLE "reserve" ADD CONSTRAINT "fk_reserve__bid" FOREIGN KEY ("bid") REFERENCES "boat" ("bid") ON DELETE CASCADE;
 
 ALTER TABLE "reserve" ADD CONSTRAINT "fk_reserve__sid" FOREIGN KEY ("sid") REFERENCES "sailor" ("sid") ON DELETE CASCADE
-
+```
+---
 **1) Consulta en sql:**
 
 select color from boat b
