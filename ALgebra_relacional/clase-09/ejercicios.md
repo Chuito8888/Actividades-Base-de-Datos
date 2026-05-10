@@ -117,13 +117,13 @@ select r.sid from reserve r where r.bid = 103
 
 **Enunciado 1: Encontrar los nombres de marineros que no han reservado un bote rojo**
 
-**Algebra relacional: **
+**Algebra relacional:**
 $$\pi_{sname}(Sailor) - \pi_{sname}(Sailor \bowtie Reserve \bowtie \sigma_{color = 'Red'}(Boat))$$
 
-**Calculo relacional: **
+**Calculo relacional:**
 $$\{ t \mid \exists s \in Sailor \ (t.sname = s.sname \land \neg \exists r \in Reserve, \exists b \in Boat \ (s.sid = r.sid \land r.bid = b.bid \land b.color = 'Red')) \}$$
 
-**Consulta en SQL: **
+**Consulta en SQL:**
 ```
 select s.sname from sailor s
 except
