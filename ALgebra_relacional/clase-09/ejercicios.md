@@ -98,7 +98,7 @@ inner join reserve r on b.bid = r.bid
 inner join sailor s on r.sid = s.sid
 where s.sname = 'Albert';
 ```
-**Enunciado 2:Encontrar los sid de marineros que tengan rating ≥ 8 o que hayan reservado el bote 103.**
+**Enunciado 2: Encontrar los sid de marineros que tengan rating ≥ 8 o que hayan reservado el bote 103.**
 
 **Algebra relacional :**
 $$\pi_{sid}(\sigma_{rating \geq 8}(Sailor)) \cup \pi_{sid}(\sigma_{bid = 103}(Reserve))$$
@@ -114,4 +114,23 @@ union
 select r.sid from reserve r where r.bid = 103
 ```
 ## **Ejercicio 2): **
+
+**Enunciado 1: Encontrar los nombres de marineros que no han reservado un bote rojo**
+
+**Algebra relacional: **
+$$\pi_{sname}(Sailor) - \pi_{sname}(Sailor \bowtie Reserve \bowtie \sigma_{color = 'Red'}(Boat))$$
+
+**Calculo relacional: **
+$$\{ t \mid \exists s \in Sailor \ (t.sname = s.sname \land \neg \exists r \in Reserve, \exists b \in Boat \ (s.sid = r.sid \land r.bid = b.bid \land b.color = 'Red')) \}$$
+
+**Consulta en SQL: **
+```
+select s.sname from sailor s
+except
+select s.sname from sailor s
+inner join reserve r on s.sid= r.sid 
+inner join boat b on r.bid=b.bid 
+where b.color = 'Red';
+```
+**Enunciado 2: Encontrar los sid de marineros con edad mayor a 20 que no han reservado un bote rojo**
 
