@@ -84,6 +84,7 @@ INSERT INTO "reserve" ("day", "sid", "bid") VALUES
 ---
 ## **Ejercicio 1):**
 **Enunciado 1: Encontrar los colores de los botes reservados por el marinero llamado Albert**
+
 **Algebra relacional :**
 $$\pi_{color}(\sigma_{sname = 'Albert'}(Boat \bowtie Reserve \bowtie Sailor))$$
 
