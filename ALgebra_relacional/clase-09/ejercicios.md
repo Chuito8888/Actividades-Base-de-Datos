@@ -1,4 +1,4 @@
-#Script usado para crear las tablas:
+## **Script usado para crear las tablas:**
 
 CREATE TABLE "boat" (
   "bid" SERIAL PRIMARY KEY,
@@ -28,7 +28,7 @@ ALTER TABLE "reserve" ADD CONSTRAINT "fk_reserve__bid" FOREIGN KEY ("bid") REFER
 
 ALTER TABLE "reserve" ADD CONSTRAINT "fk_reserve__sid" FOREIGN KEY ("sid") REFERENCES "sailor" ("sid") ON DELETE CASCADE
 
-1) Consulta en sql:
+**1) Consulta en sql:**
 
 select color from boat b
 inner join reserve r on b.bid = r.bid
