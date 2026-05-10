@@ -82,8 +82,13 @@ INSERT INTO "reserve" ("day", "sid", "bid") VALUES
 ('2026-05-09', 95, 101);
 ```
 ---
-**1) Consulta en sql:**
-
+## **Ejercicio 1):**
+**Enunciado 1: Encontrar los colores de los botes reservados por el marinero llamado Albert**
+**Algebra relacional :**
+$$\pi_{color}(\sigma_{sname = 'Albert'}(Boat \bowtie Reserve \bowtie Sailor))$$
+**Calculo Relacional :**
+$$\{ t \mid \exists b \in boat, \exists r \in reserve, \exists s \in sailor \ (b.bid = r.bid \land r.sid = s.sid \land s.sname = 'Albert' \land t.color = b.color) \}$$
+**Consulta en sql:**
 ```
 select color from boat b
 inner join reserve r on b.bid = r.bid
