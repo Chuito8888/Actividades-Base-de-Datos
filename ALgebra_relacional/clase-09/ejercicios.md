@@ -134,3 +134,14 @@ where b.color = 'Red';
 ```
 **Enunciado 2: Encontrar los sid de marineros con edad mayor a 20 que no han reservado un bote rojo**
 
+**Consulta en SQL:**
+```
+select s.sid from sailor s where s.age > 20
+except
+select s.sid from sailor s
+inner join reserve r on s.sid= r.sid 
+inner join boat b on r.bid= b.bid
+where b.color = 'Red'
+
+```
+
