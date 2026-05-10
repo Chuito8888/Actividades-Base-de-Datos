@@ -90,6 +90,7 @@ $$\pi_{color}(\sigma_{sname = 'Albert'}(Boat \bowtie Reserve \bowtie Sailor))$$
 
 **Calculo Relacional :**
 $$\{ t \mid \exists b \in boat, \exists r \in reserve, \exists s \in sailor \ (b.bid = r.bid \land r.sid = s.sid \land s.sname = 'Albert' \land t.color = b.color) \}$$
+
 **Consulta en sql:**
 ```
 select color from boat b
@@ -97,4 +98,20 @@ inner join reserve r on b.bid = r.bid
 inner join sailor s on r.sid = s.sid
 where s.sname = 'Albert';
 ```
+**Enunciado 2:Encontrar los sid de marineros que tengan rating ≥ 8 o que hayan reservado el bote 103.**
+
+**Algebra relacional :**
+$$\pi_{sid}(\sigma_{rating \geq 8}(Sailor)) \cup \pi_{sid}(\sigma_{bid = 103}(Reserve))$$
+
+**Calculo relacional :**
+$$\{ t \mid \exists s \in sailor \ (t.sid = s.sid \land (s.rating \geq 8 \lor \exists r \in reserve \ (r.sid = s.sid \land r.bid = 103))) \}$$
+
+**Consulta en sql:**
+```
+select sid as sailor_id from sailor s 
+where s.rating >= 8
+union
+select r.sid from reserve r where r.bid = 103
+```
+## **Ejercicio 2): **
 
