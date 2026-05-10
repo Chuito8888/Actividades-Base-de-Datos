@@ -28,7 +28,7 @@ ALTER TABLE "reserve" ADD CONSTRAINT "fk_reserve__bid" FOREIGN KEY ("bid") REFER
 
 ALTER TABLE "reserve" ADD CONSTRAINT "fk_reserve__sid" FOREIGN KEY ("sid") REFERENCES "sailor" ("sid") ON DELETE CASCADE
 ```
-##**Script para rellenar con datos**
+## **Script para rellenar con datos**
 (no me cargó su página así que le pedí a gemini los datos xd)
 ```
 INSERT INTO "boat" ("bid", "bname", "color") VALUES
