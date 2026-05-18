@@ -136,6 +136,33 @@ select s.sid from sailor s
 inner join reserve r on s.sid= r.sid 
 inner join boat b on r.bid= b.bid
 where b.color = 'Red'
-
 ```
+
+## **Ejercicio 3):**
+
+**Enunciado 1: Encontrar los nombres de marineros que han reservado al menos dos botes distintos.**
+
+**Algebra relacional:**
+$$ π_sname( σ_r1.sid=r2.sid ∧ r1.bid≠r2.bid ( ρ_r1(Reserves) × ρ_r2(Reserves) ) ⋈ Sailors )
+
+**Consulta en SQL:** 
+```
+select distinct s.sname from sailor s
+join reserve r1 on s.sid = r1.sid
+join reserve r2 on s.sid = r2.sid and r2.bid <> r1.bid;
+```
+
+**Enunciado 2:  Encontrar los sid de marineros cuyo rating es mejor que el de
+   algún marinero llamado Bob.**
+
+**Algebra relacional:**
+$$ π_s1.sid(σ_s1.rating>s2.sname ^ s2.sname= 'Bob'(ρ_s1(Sailor) x ρ_s2(Sailor))
+
+**Consulta en SQL:** 
+```
+select distinct s1.sid from sailor s1
+cross join  sailor s2
+where s1.rating > s2.rating and s2.sname = 'Bob';
+```
+   
 
