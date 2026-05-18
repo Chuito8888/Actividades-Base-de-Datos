@@ -143,7 +143,7 @@ where b.color = 'Red'
 **Enunciado 1: Encontrar los nombres de marineros que han reservado al menos dos botes distintos.**
 
 **Algebra relacional:**
-$$ \pi_{sname}( \sigma_{r1.sid=r2.sid ∧ r1.bid≠r2.bid}( \rho_{r1}(Reserves) × \rho_{r2}(Reserves) ) \bowtie Sailors )
+$$\pi_{sname}( \sigma_{r1.sid=r2.sid ∧ r1.bid≠r2.bid}( \rho_{r1}(Reserves) × \rho_{r2}(Reserves) ) \bowtie Sailors )
 
 **Consulta en SQL:** 
 ```
@@ -156,7 +156,7 @@ join reserve r2 on s.sid = r2.sid and r2.bid <> r1.bid;
    algún marinero llamado Bob.**
 
 **Algebra relacional:**
-$$ \pi_{s1.sid}(\sigma_{s1.rating>s2.sname ^ s2.sname= 'Bob'}(\rho_{s1}(Sailor) x \rho_{s2}(Sailor))
+$$\pi_{s1.sid}(\sigma_{s1.rating>s2.sname ^ s2.sname= 'Bob'}(\rho_{s1}(Sailor) x \rho_{s2}(Sailor))
 
 **Consulta en SQL:** 
 ```
