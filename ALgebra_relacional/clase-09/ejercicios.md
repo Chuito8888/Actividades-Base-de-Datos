@@ -88,9 +88,6 @@ INSERT INTO "reserve" ("day", "sid", "bid") VALUES
 **Algebra relacional :**
 $$\pi_{color}(\sigma_{sname = 'Albert'}(Boat \bowtie Reserve \bowtie Sailor))$$
 
-**Calculo Relacional :**
-$$\{ t \mid \exists b \in boat, \exists r \in reserve, \exists s \in sailor \ (b.bid = r.bid \land r.sid = s.sid \land s.sname = 'Albert' \land t.color = b.color) \}$$
-
 **Consulta en sql:**
 ```
 select color from boat b
@@ -102,9 +99,6 @@ where s.sname = 'Albert';
 
 **Algebra relacional :**
 $$\pi_{sid}(\sigma_{rating \geq 8}(Sailor)) \cup \pi_{sid}(\sigma_{bid = 103}(Reserve))$$
-
-**Calculo relacional :**
-$$\{ t \mid \exists s \in sailor \ (t.sid = s.sid \land (s.rating \geq 8 \lor \exists r \in reserve \ (r.sid = s.sid \land r.bid = 103))) \}$$
 
 **Consulta en sql:**
 ```
@@ -120,9 +114,6 @@ select r.sid from reserve r where r.bid = 103
 **Algebra relacional:**
 $$\pi_{sname}(Sailor) - \pi_{sname}(Sailor \bowtie Reserve \bowtie \sigma_{color = 'Red'}(Boat))$$
 
-**Calculo relacional:**
-$$\{ t \mid \exists s \in Sailor \ (t.sname = s.sname \land \neg \exists r \in Reserve, \exists b \in Boat \ (s.sid = r.sid \land r.bid = b.bid \land b.color = 'Red')) \}$$
-
 **Consulta en SQL:**
 ```
 select s.sname from sailor s
@@ -133,6 +124,9 @@ inner join boat b on r.bid=b.bid
 where b.color = 'Red';
 ```
 **Enunciado 2: Encontrar los sid de marineros con edad mayor a 20 que no han reservado un bote rojo**
+
+**Algebra relacional**
+$$\pi_{ssid}(\sigma_{sage>20}(sailor) - \pi_{ssid}(sailor \bowtie Reserve \bowtie \sigma_{color='Red'}(Boat))$$
 
 **Consulta en SQL:**
 ```
