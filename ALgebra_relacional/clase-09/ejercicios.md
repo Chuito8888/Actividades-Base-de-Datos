@@ -167,7 +167,7 @@ where s1.rating > s2.rating and s2.sname = 'Bob';
 
 **Enunciado 3: Encontrar los sid de marineros cuyo rating es mejor que el de todos los marineros llamados Bob
 **Algebra relacional:**
-$$π_{sid}(sailor) - π_{s1.sid}(σ_{s1.rating<=s2.rating∧s2.sname='Bob'}(ρ_{s1}(Sailor) x ρ_{s2}(Sailor))$$
+$$π_{sid}(sailor) - π_{s1.sid}(σ_{s1.rating<=s2.rating∧s2.sname='Bob'}( ρ_{s1}(Sailor) X ρ_{s2}(Sailor) )$$
 
 **Consulta en SQL:**
 ```
