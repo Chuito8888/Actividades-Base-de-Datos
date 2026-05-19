@@ -178,5 +178,22 @@ cross join sailor s2
 where s1.rating <= s2.rating and s2.sname = 'Bob';
 ```
 
+## **Ejercicio 4):**
+
+**Enunciado 1 : Encontrar los nombres de marineros que han reservado todos los botes.**
+
+**Algebra Relacional:**
+$$\pi_{\text{sid}, \text{bid}}(\text{Reserves}) \div \pi_{\text{bid}}(\text{Boats})$$
+
+**Consulta en SQL:**
+```
+select s.sname from sailor s
+where not exists(
+select  b.bid from boat b
+where not exists(
+select r.bid from reserve r
+where r.bid= b.bid and r.sid=s.sid)
+);```
+
    
 
