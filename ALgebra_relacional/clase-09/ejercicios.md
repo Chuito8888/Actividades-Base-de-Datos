@@ -193,7 +193,8 @@ select  b.bid from boat b
 where not exists(
 select r.bid from reserve r
 where r.bid= b.bid and r.sid=s.sid)
-);```
+);
+```
 
    
 
