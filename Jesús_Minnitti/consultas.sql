@@ -3,7 +3,7 @@
 --consultas pedidas por el master
 --******************************************************************
 
-/*
+
 set search_path to cine;
 
 -- 1. Top 3 películas por recaudación total
@@ -16,9 +16,7 @@ left join boleto b on f.funcion_id = b.funcion
 group by p.pelicula_id, p.titulo
 order by recaudacion_total desc
 limit 3;
-*/
 
-/*
 -- 2. Función con el mayor porcentaje de ocupación
 select 
     funcion,
@@ -34,9 +32,7 @@ select
 from vista_disponibilidad_funcion
 order by porcentaje_ocupacion desc
 limit 1;
-*/
 
-/*
 -- 3. Clientes que compraron entradas en 3 o más funciones distintas
 select 
     c.nombre,
@@ -46,9 +42,7 @@ from cliente c
 join boleto b on c.cliente_id = b.cliente
 group by c.cliente_id, c.nombre, c.rut
 having count(distinct b.funcion) >= 3;
-*/
 
-/*
 -- 4. Recaudación por sala y por día
 select 
     f.sala,
@@ -58,9 +52,7 @@ from funcion f
 left join boleto b on f.funcion_id = b.funcion
 group by f.sala, f.fecha_hora::date
 order by fecha desc, f.sala asca;
-*/
 
-/*
 -- 5. Películas que no tienen ninguna entrada vendida
 select 
     p.titulo as pelicula_sin_ventas
@@ -69,9 +61,7 @@ left join funcion f on p.pelicula_id = f.pelicula
 left join boleto b on f.funcion_id = b.funcion
 group by p.pelicula_id, p.titulo
 having count(b.boleto_id) = 0;
-*/
 
-/*
 -- 6. Horario de inicio con más entradas vendidas (La franja peak)
 select 
     f.fecha_hora::time as horario_inicio,
@@ -81,4 +71,3 @@ join boleto b on f.funcion_id = b.funcion
 group by f.fecha_hora::time
 order by total_entradas_vendidas desc
 limit 1;
-*/
