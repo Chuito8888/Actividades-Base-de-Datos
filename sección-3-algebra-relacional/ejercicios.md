@@ -1,4 +1,4 @@
-## **Script usado para crear las tablas:**
+ ## **Script usado para crear las tablas:**
 ```
 CREATE TABLE "boat" (
   "bid" SERIAL PRIMARY KEY,
@@ -125,7 +125,7 @@ where b.color = 'Red';
 ```
 **Enunciado 2: Encontrar los sid de marineros con edad mayor a 20 que no han reservado un bote rojo**
 
-**Algebra relacional**
+**Algebra relacional:**
 $$\pi_{ssid}(\sigma_{sage>20}(sailor) - \pi_{ssid}(sailor \bowtie Reserve \bowtie \sigma_{color='Red'}(Boat))$$
 
 **Consulta en SQL:**
@@ -165,7 +165,8 @@ cross join  sailor s2
 where s1.rating > s2.rating and s2.sname = 'Bob';
 ```
 
-**Enunciado 3: Encontrar los sid de marineros cuyo rating es mejor que el de todos los marineros llamados Bob
+**Enunciado 3: Encontrar los sid de marineros cuyo rating es mejor que el de todos los marineros llamados Bob**
+
 **Algebra relacional:**
 $$π_{sid}(sailor) - π_{s1.sid}(σ_{s1.rating<=s2.rating∧s2.sname='Bob'}( ρ_{s1}(Sailor) X ρ_{s2}(Sailor) )$$
 
@@ -195,6 +196,84 @@ select r.bid from reserve r
 where r.bid= b.bid and r.sid=s.sid)
 );
 ```
+
+**Enunciado 2: Encontrar los nombres de marineros que han reservado todos los botes llamados BigBoat.**
+
+**Algebra Relacional:**
+$$\pi_{sname} (Sailors \bowtie (\pi_{sid, bid}(Reserves) \div \pi_{bid}(\sigma_{bname = 'BigBoat'}(Boats))))$$
+
+**Consulta en SQL:**
+```
+select s.name from sailors s
+where not exists (
+  select b.bid from boats b
+  where b.name = 'BigBoat'
+  and not exists(
+    select r.bid from reserves r
+    where r.sid = s.sid and r.bid = b.bid
+    )
+);
+```
+
+**Enunciado 3: Encontrar los nombres de marineros que han reservado todos los botes que han sido reservadors por marineros con menor rating que ellos.**
+
+**Algebra Relacional:**
+$$\rho_{S1}(Sailors)$$
+
+$$\rho_{S2}(Sailors)$$
+
+$$BotesMenores(sid1, bid) = \pi_{S1.sid, Reserves.bid}(\sigma_{S2.rating < S1.rating}(S1 \times S2 \bowtie_{S2.sid = Reserves.sid} Reserves))$$
+
+$$\pi_{sname}(Sailors \bowtie (BotesMenores \div \pi_{sid, bid}(Reserves)))$$
+
+**Consulta en SQL**
+```
+select s1.sname from sailors s1
+where not exists(
+  select r2.bid from sailors s2
+  join reserves r2 on s2.sid = r2.sid
+  where s2.rating < s1.rating
+  and not exists(
+    select r1.bid from reserves r1
+    where r1.sid = s1.sid and r1.bid = r2.bid
+    )
+);
+```
+
+## **Ejercicio 5):**
+
+**Enunciado 1: Encontrar los sid de marineros con el rating mas alto, sin usar MAX ni ORDER BY LIMIT.**
+
+**Algebra Relacional:**
+$$NoMax(sid) = \pi_{S1.sid}(\sigma_{S1.rating < S2.rating}(\rho_{S1}(Sailors) \times \rho_{S2}(Sailors)))$$
+
+$$\pi_{sid}(Sailors) - NoMax$$
+
+**Consulta en SQL**
+```
+select s1.sid from sailors s1
+where not exists(
+  select s2.sid from sailors s2
+  where s2.rating > s1.rating
+);
+```
+**Enunciado 2: Encontrar el nombre y la edad del marinero más viejo, sin usar MAX ni ORDER BY LIMIT.**
+
+**Algebra Relacional: **
+$$NoViejo(sid) = \pi_{S1.sid}(\sigma_{S1.age < S2.age}(\rho_{S1}(Sailors) \times \rho_{S2}(Sailors)))$$
+
+$$\pi_{sname, age}(Sailors \bowtie (\pi_{sid}(Sailors) - NoViejo))$$
+
+**Consulta en SQL**
+```
+select s1.sname, s1.age from sailors s1
+where not exists(
+  select s2.sid from sailors s2
+  where s2.age > s1.age
+);
+```
+
+
 
    
 
