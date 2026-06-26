@@ -211,6 +211,7 @@ $$\pi_{name, phone}(clients \bowtie (\pi_{cid}(clients) - \pi_{cid}(\sigma_{serv
 
 **1)**
 $$\pi_{sid}\bigl(\sigma_{rating > 7}(sailors)\bigr)$$
+
 **Consulta SQL:**
 ```
 select sid 
