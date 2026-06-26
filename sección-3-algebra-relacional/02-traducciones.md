@@ -1,4 +1,4 @@
-## **Sección 1: SQL -> Álgebra Relacional **
+ ## **Sección 1: SQL -> Álgebra Relacional**
 
 **1) Vuelos cuyo destino es New Delhi**
 ```
