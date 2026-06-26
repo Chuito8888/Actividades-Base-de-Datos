@@ -209,7 +209,8 @@ $$\pi_{name, phone}(clients \bowtie (\pi_{cid}(clients) - \pi_{cid}(\sigma_{serv
 
 ## **Sección 2: Algebra Relacional -> SQL**
 
-**1)$$\pi_{sid}\bigl(\sigma_{rating > 7}(sailors)\bigr)$$**
+**1)**
+$$\pi_{sid}\bigl(\sigma_{rating > 7}(sailors)\bigr)$$
 **Consulta SQL:**
 ```
 select sid 
@@ -217,7 +218,8 @@ from sailors
 where rating > 7;
 ```
 
-**2)$\pi_{sname}\bigl(\sigma_{age \geq 18 \wedge age \leq 25}(sailors)\bigr)$**
+**2)**
+$$\pi_{sname}\bigl(\sigma_{age \geq 18 \wedge age \leq 25}(sailors)\bigr)$$
 
 **Consulta SQL:**
 ```
@@ -226,7 +228,8 @@ from sailors
 where age >= 18 and age <= 25;
 ```
 
-**3)$\pi_{sname}\bigl(sailors \bowtie reserves \bowtie \sigma_{color='red'}(boats)\bigr)$**
+**3)**
+$$\pi_{sname}\bigl(sailors \bowtie reserves \bowtie \sigma_{color='red'}(boats)\bigr)$$
 
 **Consulta SQL:**
 ```
@@ -237,7 +240,8 @@ join boats b on r.bid = b.bid
 where b.color = 'red';
 ```
 
-**4)$\pi_{s1.sid}\bigl(\rho_{s1}(sailors) \bowtie_{s1.rating > s2.rating} \rho_{s2}(\sigma_{sname='Bob'}(sailors))\bigr)$**
+**4)**
+$$\pi_{s1.sid}\bigl(\rho_{s1}(sailors) \bowtie_{s1.rating > s2.rating} \rho_{s2}(\sigma_{sname='Bob'}(sailors))\bigr)$$
 
 **Consulta SQL:**
 ```
@@ -247,7 +251,8 @@ join sailors s2 on s1.rating > s2.rating
 where s2.sname = 'Bob';
 ```
 
-**5)$\pi_{sid}(sailors);-;\pi_{s1.sid}\bigl(\rho_{s1}(sailors) \bowtie_{s1.rating < s2.rating} \rho_{s2}(sailors)\bigr)$**
+**5)**
+$$\pi_{sid}(sailors);-;\pi_{s1.sid}\bigl(\rho_{s1}(sailors) \bowtie_{s1.rating < s2.rating} \rho_{s2}(sailors)\bigr)$$
 
 **Consulta SQL:**
 ```
@@ -258,7 +263,8 @@ from sailors s1
 join sailors s2 on s1.rating < s2.rating;
 ```
 
-**6)$\pi_{pname}\bigl(\sigma_{color='red'}(parts)\bigr)$**
+**6)**
+$$\pi_{pname}\bigl(\sigma_{color='red'}(parts)\bigr)$$
 
 **Consulta SQL:**
 ```
@@ -267,7 +273,8 @@ from parts
 where color = 'red';
 ```
 
-**7)$\pi_{cost}\bigl(\sigma_{color='red' \vee color='green'}(parts) \bowtie catalog\bigr)$**
+**7)**
+$$\pi_{cost}\bigl(\sigma_{color='red' \vee color='green'}(parts) \bowtie catalog\bigr)$$
 
 **Consulta SQL:**
 ```
@@ -277,7 +284,8 @@ join catalog c on p.pid = c.pid
 where p.color = 'red' or p.color = 'green';
 ```
 
-**8)$\pi_{sid}\bigl(\sigma_{color='red' \vee color='green'}(parts) \bowtie catalog\bigr)$**
+**8)**
+$$\pi_{sid}\bigl(\sigma_{color='red' \vee color='green'}(parts) \bowtie catalog\bigr)$$
 
 **Consulta SQL:**
 ```
@@ -287,7 +295,8 @@ join catalog c on p.pid = c.pid
 where p.color = 'red' or p.color = 'green';
 ```
 
-**9)$\pi_{sname}\Bigl(\pi_{sid}\bigl(\sigma_{color='red' \vee color='green'}(parts) \bowtie catalog\bigr) \bowtie suppliers\Bigr)$**
+**9)**
+$$\pi_{sname}\Bigl(\pi_{sid}\bigl(\sigma_{color='red' \vee color='green'}(parts) \bowtie catalog\bigr) \bowtie suppliers\Bigr)$$
 
 **Consulta SQL:**
 ```
@@ -298,7 +307,8 @@ join parts p on c.pid = p.pid
 where p.color = 'red' or p.color = 'green';
 ```
 
-**10)$\pi_{sname}\bigl(\sigma_{color='red'}(parts) \bowtie \sigma_{cost < 100}(catalog) \bowtie suppliers\bigr)$**
+**10)**
+$$\pi_{sname}\bigl(\sigma_{color='red'}(parts) \bowtie \sigma_{cost < 100}(catalog) \bowtie suppliers\bigr)$$
 
 **Consulta SQL:**
 ```
@@ -309,7 +319,8 @@ join parts p on c.pid = p.pid
 where p.color = 'red' and c.cost < 100;
 ```
 
-**11)$\pi_{sname}(\sigma_{color='red'}(parts) \bowtie \sigma_{cost<100}(catalog) \bowtie suppliers);\cap;\pi_{sname}(\sigma_{color='green'}(parts) \bowtie \sigma_{cost<100}(catalog) \bowtie suppliers)$**
+**11)**
+$$\pi_{sname}(\sigma_{color='red'}(parts) \bowtie \sigma_{cost<100}(catalog) \bowtie suppliers);\cap;\pi_{sname}(\sigma_{color='green'}(parts) \bowtie \sigma_{cost<100}(catalog) \bowtie suppliers)$$
 
 **Consulta SQL:**
 ```
@@ -326,7 +337,8 @@ join parts p on c.pid = p.pid
 where p.color = 'green' and c.cost < 100;
 ```
 
-**12)$\pi_{sid}(\sigma_{color='red'}(parts) \bowtie \sigma_{cost<100}(catalog));\cap;\pi_{sid}(\sigma_{color='green'}(parts) \bowtie \sigma_{cost<100}(catalog))$**
+**12)**
+$$\pi_{sid}(\sigma_{color='red'}(parts) \bowtie \sigma_{cost<100}(catalog));\cap;\pi_{sid}(\sigma_{color='green'}(parts) \bowtie \sigma_{cost<100}(catalog))$$
 
 **Consulta SQL:**
 ```
@@ -341,7 +353,8 @@ join parts p on c.pid = p.pid
 where p.color = 'green' and c.cost < 100;
 ```
 
-**13)$\pi_{sid}(suppliers);-;\pi_{sid}(catalog)$**
+**13)**
+$$\pi_{sid}(suppliers);-;\pi_{sid}(catalog)$$
 
 **Consulta SQL:**
 ```
@@ -350,7 +363,8 @@ except
 select sid from catalog;
 ```
 
-**14)$\bigl(\pi_{sid}(catalog) \times \pi_{pid}(parts)\bigr);-;\pi_{sid,pid}(catalog)$**
+**14)**
+$$\bigl(\pi_{sid}(catalog) \times \pi_{pid}(parts)\bigr);-;\pi_{sid,pid}(catalog)$$
 
 **Consulta SQL:**
 ```
@@ -361,7 +375,8 @@ select sid, pid
 from catalog;
 ```
 
-**15)$\pi_{name}\bigl(\sigma_{salary > 1000 \wedge age < 30}(employees)\bigr)$**
+**15)**
+$$\pi_{name}\bigl(\sigma_{salary > 1000 \wedge age < 30}(employees)\bigr)$$
 
 **Consulta SQL:**
 ```
@@ -370,7 +385,8 @@ from employees
 where salary > 1000 and age < 30;
 ```
 
-**16)$\pi_{b.name}\bigl(\rho_{b}(employees) \bowtie_{b.number=sv.boss} \rho_{sv}(supervises)\bigr)$**
+**16)**
+$$\pi_{b.name}\bigl(\rho_{b}(employees) \bowtie_{b.number=sv.boss} \rho_{sv}(supervises)\bigr)$$
 
 **Consulta SQL:**
 ```
@@ -379,7 +395,8 @@ from employees b
 join supervises sv on b.number = sv.boss;
 ```
 
-**17)$\pi_{number}(employees);-;\pi_{boss}(supervises)$**
+**17)**
+$$\pi_{number}(employees);-;\pi_{boss}(supervises)$$
 
 **Consulta SQL:**
 ```
@@ -388,7 +405,8 @@ except
 select boss from supervises;
 ```
 
-**18)$\pi_{name, phone}\bigl(clients \bowtie \sigma_{service='haircut'}(appointments)\bigr)$**
+**18)**
+$$\pi_{name, phone}\bigl(clients \bowtie \sigma_{service='haircut'}(appointments)\bigr)$$
 
 **Consulta SQL:**
 ```
@@ -398,7 +416,8 @@ join appointments a on c.cid = a.cid
 where a.service = 'haircut';
 ```
 
-**19)$\pi_{cid}(clients);-;\pi_{cid}(appointments)$**
+**19)**
+$$\pi_{cid}(clients);-;\pi_{cid}(appointments)$$
 
 **Consulta SQL:**
 ```
@@ -407,7 +426,8 @@ except
 select cid from appointments;
 ```
 
-**20)$\pi_{c.name, s.name}\bigl(\rho_{c}(clients) \bowtie_{c.cid=a.cid} \rho_{a}(appointments) \bowtie_{a.sid=s.sid} \rho_{s}(staff)\bigr)$**
+**20)**
+$$\pi_{c.name, s.name}\bigl(\rho_{c}(clients) \bowtie_{c.cid=a.cid} \rho_{a}(appointments) \bowtie_{a.sid=s.sid} \rho_{s}(staff)\bigr)$$
 
 **Consulta SQL:**
 ```
